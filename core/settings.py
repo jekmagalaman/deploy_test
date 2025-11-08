@@ -7,7 +7,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 
-# Load environment variables
+# Load environment variables from .env
 load_dotenv()
 
 # Build paths inside the project
@@ -16,11 +16,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ==============================
 # SECURITY SETTINGS
 # ==============================
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key')  # safer than hardcoding
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key')  # fallback if env missing
 
-DEBUG = False  # must be False for production
+DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1']  # read from environment
 
-ALLOWED_HOSTS = ['*']  # later you can change this to your render domain
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')  # comma-separated hosts
 
 # ==============================
 # INSTALLED APPS
@@ -91,11 +91,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # ==============================
 # DATABASE
 # ==============================
-# Use Neon.tech database if DATABASE_URL is set, otherwise local Postgres
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'psql 'postgresql://neondb_owner:npg_sa9njfRPd3BA@ep-red-field-a46slt7r-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require''),
-        conn_max_age=600
+        default=os.getenv(
+            'DATABASE_URL',
+            "postgresql://neondb_owner:npg_sa9njfRPd3BA@ep-red-field-a46slt7r-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+        ),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
@@ -113,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # INTERNATIONALIZATION
 # ==============================
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'Asia/Manila'  # better for PSU
+TIME_ZONE = 'Asia/Manila'  # PSU timezone
 USE_I18N = True
 USE_TZ = True
 
