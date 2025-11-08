@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Use Neon.tech database if DATABASE_URL is set, otherwise local Postgres
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'postgresql://jek:root@localhost:5432/new_version'),
+        default=os.getenv('DATABASE_URL', 'psql 'postgresql://neondb_owner:npg_sa9njfRPd3BA@ep-red-field-a46slt7r-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require''),
         conn_max_age=600
     )
 }
