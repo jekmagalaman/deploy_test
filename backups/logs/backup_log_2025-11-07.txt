@@ -1,0 +1,12 @@
+
+=== BACKUP RUN (2025-11-07 14:10:56.576014) ===
+Database backup: C:\Users\Client\Desktop\New_Version\gso_latest_gso\backups\gso_backup_2025-11-07_14-10-56.sql
+Media backup: C:\Users\Client\Desktop\New_Version\gso_latest_gso\backups\media_backup_2025-11-07_14-10-56.zip
+Old backups cleaned up (older than 7 days)
+=== BACKUP COMPLETED ===
+
+=== BACKUP RUN (2025-11-07 15:15:31.530604) ===
+Database backup: C:\Users\Client\Desktop\New_Version\gso_latest_gso\backups\gso_backup_2025-11-07_15-15-31.sql
+Media backup: C:\Users\Client\Desktop\New_Version\gso_latest_gso\backups\media_backup_2025-11-07_15-15-31.zip
+Old backups cleaned up (older than 7 days)
+=== BACKUP COMPLETED ===
